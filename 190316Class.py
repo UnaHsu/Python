@@ -34,5 +34,3 @@ while count < 3:
     count += 1;
 else:
     print("win");
-    
-print("abc");
