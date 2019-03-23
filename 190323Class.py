@@ -1,9 +1,10 @@
-import requests as req
+import requests
 import json
 
-token=“EAAFDsWZAS5iYBAC0O1bZAXVQZAnFQQRi7eWZCMn3GZCtikNJbr1n5vG6ttZCUy0bN6CT441zawvCqWXktzZCIcO2ESlwUTDniGiZAkAWA0549UiXoPh5NhkRVFPWX5lFQ4Jwfpx5bctEYnZAZCh7atkc7K5mizlEeVIq27evgiT7ZAHUFmbZBGzngAMmPJkmNLiLrBAZD”;
+token="EAAFDsWZAS5iYBAGZCo9ZCZCX5UlhVTra3KUafcBriKIf1OrkuAkWZBkBTbr4TqapRsp4VhtzZBKD0ZA2o2qX4mHpd8XHfrr0J8W7DfZBRFKhGUKVucMGFuFCQ5lbFzZBRghvSXUT5s28nTrbXCmOeyM0dpUheMiyfId8k5trv2BvP4LtZBynKt4O2H2nWd9qDOk00ZD";
 
-data = req.get(“http://graph.facebook.com/me/posts?access_token=” + token);
-jd = json.loads(data);
+data = requests.get("https://graph.facebook.com/me/posts?access_token=" + token);
+jd = json.loads(data.text);
 
-print(data);
+print(jd);
+
