@@ -1,6 +1,7 @@
-import requests
+import requests #pip install requests
 import json
-import jieba
+import jieba #pip install jieba
+import operator
 
 corpus = [];
 token="EAAFDsWZAS5iYBAI3pDLFB9V4J0iub9sa8sXp07yol54fluCWtHURIQGE4E64gspLxZAwuICaQGQaawOChzDvvEmTNmT1sQg0FzXopKBGP0MIDwzkQQM0h6KZAWD79pWZAz8ZCTSZAstzp4T8VgZBk5waRVx6HdsIpeGShRET4kNL5wVhtZCO4qyBEf66XKSdZC6Gknbisk1siwgZDZD";
@@ -28,6 +29,7 @@ for ele in corpus:
     else:
         dic[ele] += 1;
 
-for ele in dic.items():
+sorted_word = sorted(dic.itmes(), key = operator.itemgetter(1), reverse = True);
+for ele in sorted_word:
     if len(ele[0]) >= 2:
         print(ele[0], ele[1]);
