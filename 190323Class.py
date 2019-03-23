@@ -6,5 +6,8 @@ token="EAAFDsWZAS5iYBAGZCo9ZCZCX5UlhVTra3KUafcBriKIf1OrkuAkWZBkBTbr4TqapRsp4Vhtz
 data = requests.get("https://graph.facebook.com/me/posts?access_token=" + token);
 jd = json.loads(data.text);
 
-print(jd);
+print(jd[data][0][message]);
+
+for post in jd[data]:
+	print(post[id]);
 
