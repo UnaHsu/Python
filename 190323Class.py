@@ -14,9 +14,10 @@ while "paging" in jd:
     print("==========")
     for post in jd["data"]:
         if "message" in post:
-            #print(post["message"]);
-            corpus += jieba.cut(post["message"]);
-            #print("，".join(jieba.cut(post["message"])));
+        	#print(post["message"]);
+			#print("，".join(jieba.cut(post["message"])));
+			corpus += jieba.cut(post["message"]);
+
     data = requests.get(jd["paging"]["next"]);
     jd = json.loads(data.text);
 
@@ -26,5 +27,7 @@ for ele in corpus:
     	dic[ele] = 1;
 	else:
     	dic[ele] += 1;
-    
-print(dic)
+
+for ele in dic.items():    
+	if len(dic[0]) > 1 :
+		print(dic[0], dic[1]);
