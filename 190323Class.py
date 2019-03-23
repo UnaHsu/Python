@@ -3,7 +3,7 @@ import json
 import jieba
 
 corpus = [];
-token="EAAFDsWZAS5iYBAErQ61de1l1Ge9BzKhn1IOHvZCrHgaRllkfwyc5njZALievlY0YZBoi6NEiK4TmHnZAlNdLYGCPEb26jGeU4RIFsZAwK1rhZAiuyonLuia4FfDaY6kEdkKPS5U8ycWdTgGoUNwxPeZCuAnZCCZBZATBPOkUyfvTqBh1ZAQxssFfwljCm9ZB9Wh1yGIgZD";
+token="EAAFDsWZAS5iYBAI3pDLFB9V4J0iub9sa8sXp07yol54fluCWtHURIQGE4E64gspLxZAwuICaQGQaawOChzDvvEmTNmT1sQg0FzXopKBGP0MIDwzkQQM0h6KZAWD79pWZAz8ZCTSZAstzp4T8VgZBk5waRVx6HdsIpeGShRET4kNL5wVhtZCO4qyBEf66XKSdZC6Gknbisk1siwgZDZD";
 data = requests.get("https://graph.facebook.com/me/posts?since=145160640&limit=100&access_token=" + token);
 jd = json.loads(data.text);
 
@@ -14,20 +14,20 @@ while "paging" in jd:
     print("==========")
     for post in jd["data"]:
         if "message" in post:
+            corpus += jieba.cut(post["message"]);
         	#print(post["message"]);
-			#print("，".join(jieba.cut(post["message"])));
-			corpus += jieba.cut(post["message"]);
+			#print("，".join(jieba.cut(post["message"])));	
 
     data = requests.get(jd["paging"]["next"]);
     jd = json.loads(data.text);
 
-dic = {}    
+dic = {};
 for ele in corpus:
-	if ele not in dic:
-    	dic[ele] = 1;
-	else:
-    	dic[ele] += 1;
+    if ele not in dic:
+        dic[ele] = 1;
+    else:
+        dic[ele] += 1;
 
-for ele in dic.items():    
-	if len(dic[0]) > 1 :
-		print(dic[0], dic[1]);
+for ele in dic.items():
+    if len(ele[0]) >= 2:
+        print(ele[0], ele[1]);
