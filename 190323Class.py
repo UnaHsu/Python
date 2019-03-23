@@ -5,9 +5,13 @@ token="EAAFDsWZAS5iYBAErQ61de1l1Ge9BzKhn1IOHvZCrHgaRllkfwyc5njZALievlY0YZBoi6NEi
 data = requests.get("https://graph.facebook.com/me/posts?since=145160640&limit=100&access_token=" + token);
 jd = json.loads(data.text);
 
-print(jd);
+
 #print(jd["data"][0]["id"]);
 
-for post in jd["data"]:
-    if "message" in post:
-        print(post["message"]);
+while "paging" in jd:
+    print("==========")
+    for post in jd["data"]:
+        if "message" in post:
+            print(post["message"]);
+    data = requests.get(jd["paging"]["next"]);
+    jd = json.loads(data.text);
