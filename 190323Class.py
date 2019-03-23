@@ -31,5 +31,5 @@ for ele in corpus:
 
 sorted_word = sorted(dic.items(), key = operator.itemgetter(1), reverse = True);
 for ele in sorted_word:
-    if len(ele[0]) >= 2:
+    if len(ele[0]) >= 2 and ele[1] > 2:
         print(ele[0], ele[1]);
